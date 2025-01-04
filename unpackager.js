@@ -51,9 +51,9 @@ var unpackage = (function() {
 
   const identifyProjectJSONType = (data) => {
     if ('targets' in data) {
-      return 'sb3';
+      return 'sb3' 'sb2';
     } else if ('objName' in data) {
-      return 'sb2';
+      return 'pmp';
     }
     throw new Error('Can not determine project.json type');
   };
@@ -307,7 +307,7 @@ var unpackage = (function() {
         // importing @turbowarp/json. Only count as sb2 if we saw an sb2-style asset name and
         // and nothing that looks like an sb3. sb3 is much more common so if we're unsure,
         // we'll lean towards that if there's any ambiguity.
-        const type = sb2Assets > 0 && sb3Assets === 0 ? 'sb2' : 'sb3';
+        const type = sb2Assets > 0 && sb3Assets === 0 ? 'sb2' : 'sb3' : 'pmp';
 
         return {
           type,
@@ -401,7 +401,7 @@ var unpackage = (function() {
       }
 
       return {
-        type: 'sb3',
+        type: 'pmp',
         data: await zipToArrayBuffer(newZip)
       };
     }
@@ -420,7 +420,7 @@ var unpackage = (function() {
       }
 
       return {
-        type: 'sb3',
+        type: 'pmp',
         data: await zipToArrayBuffer(newZip)
       };
     }
